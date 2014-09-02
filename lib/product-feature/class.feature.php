@@ -24,7 +24,7 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
         <p><?php echo $this->description; ?></p>
 
         <label for="ibd_author_select">
-            <?php _e( 'Select the author' ); ?>
+            <?php _e( 'Select the author', 'ibd_multi_author' ); ?>
         </label>
         <select id="ibd_author_select" name="ibd_author_select">
             <?php foreach ( $users as $user ): ?>
@@ -147,6 +147,6 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
 
 new IT_EXCHANGE_Feature( array(
     'slug'          => 'ibd-multi-author-store',
-    'description'   => __( 'Select an author for this product.' ),
-    'metabox_title' => __( 'Product Author' )
+    'description'   => __( 'Select an author for this product.', 'ibd_multi_author' ),
+    'metabox_title' => __( 'Product Author', 'ibd_multi_author' )
 ) );

@@ -34,7 +34,7 @@ class ITE_Multi_Author {
         self::$url = plugin_dir_url( __FILE__ );
 
         add_action( 'init', array( $this, 'init' ) );
-
+        add_action( 'plugins_loaded', array( $this, 'load_text_domain' ) );
         add_action( 'it_exchange_register_addons', array( $this, 'multi_author_addon' ) );
 
         spl_autoload_register( array( $this, 'autoload' ) );
@@ -47,21 +47,27 @@ class ITE_Multi_Author {
         require_once( self::$dir . 'init.php' );
     }
 
+    /**
+     * Loads the translation data for WordPress
+     */
+    function load_text_domain() {
+        load_plugin_textdomain( 'ibd_multi_author', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+    }
 
     /**
      * Registers the multi-author add-on.
      */
     function multi_author_addon() {
         $options = array(
-            'name'        => __( 'Multi-author Store' ),
-            'description' => __( 'Creates a user interface for selecting an author in the product edit screen.' ),
+            'name'        => __( 'Multi-author Store', 'ibd_multi_author' ),
+            'description' => __( 'Creates a user interface for selecting an author in the product edit screen.', 'ibd_multi_author' ),
             'author'      => 'Iron Bound Designs',
             'author_url'  => 'http://www.ironbounddesigns.com',
             'file'        => self::$dir . 'init.php',
             'category'    => 'product-feature',
             'basename'    => plugin_basename( __FILE__ ),
             'labels'      => array(
-                'singular_name' => __( 'Multi-author Store' ),
+                'singular_name' => __( 'Multi-author Store', 'ibd_multi_author' ),
             )
         );
 
