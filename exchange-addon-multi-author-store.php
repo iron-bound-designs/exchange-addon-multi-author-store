@@ -14,19 +14,25 @@
  */
 
 
-if ( !defined('IT_EXCHANGE_MULTI_AUTHOR_DIR') )
-    define('IT_EXCHANGE_MULTI_AUTHOR_DIR', plugin_dir_path( __FILE__ ));
+class ITE_Multi_Author {
 
-if ( !defined('IT_EXCHANGE_MULTI_AUTHOR_URL') )
-    define('IT_EXCHANGE_MULTI_AUTHOR_URL', plugin_dir_url( __FILE__ ));
+    /**
+     * @var string
+     */
+    static $dir;
 
-
-class IT_EXCHANGE_MultiAuthorStore {
+    /**
+     * @var string
+     */
+    static $url;
     
     /**
      * Add required actions.
      */
     function __construct() {
+        self::$dir = plugin_dir_path( __FILE__ );
+        self::$url = plugin_dir_url( __FILE__ );
+
         add_action( 'init', array( $this, 'init' ) );
 
         add_action( 'it_exchange_register_addons', array( $this, 'multi_author_addon' ) );
@@ -38,7 +44,7 @@ class IT_EXCHANGE_MultiAuthorStore {
      * Initialize the plugin.
      */
     public function init() {
-        require_once( IT_EXCHANGE_MULTI_AUTHOR_DIR . 'init.php' );
+        require_once( self::$dir . 'init.php' );
     }
 
 
@@ -51,7 +57,7 @@ class IT_EXCHANGE_MultiAuthorStore {
             'description' => __( 'Creates a user interface for selecting an author in the product edit screen.' ),
             'author'      => 'Iron Bound Designs',
             'author_url'  => 'http://www.ironbounddesigns.com',
-            'file'        => IT_EXCHANGE_MULTI_AUTHOR_DIR . 'init.php',
+            'file'        => self::$dir . 'init.php',
             'category'    => 'product-feature',
             'basename'    => plugin_basename( __FILE__ ),
             'labels'      => array(
@@ -85,7 +91,7 @@ class IT_EXCHANGE_MultiAuthorStore {
         $prefixes = array( 'class', 'abstract', 'interface' );
 
         foreach ( $prefixes as $prefix ) {
-            $fullpath = IT_EXCHANGE_MULTI_AUTHOR_DIR  . "lib/{$path}/{$prefix}.{$name}.php";
+            $fullpath = self::$dir  . "lib/{$path}/{$prefix}.{$name}.php";
 
             if ( file_exists( $fullpath ) ) {
                 require( $fullpath );
@@ -96,4 +102,4 @@ class IT_EXCHANGE_MultiAuthorStore {
 
 }
 
-new IT_EXCHANGE_MultiAuthorStore;
+new ITE_Multi_Author;
