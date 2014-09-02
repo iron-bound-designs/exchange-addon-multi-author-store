@@ -16,9 +16,9 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
      * @param $post WP_Post
      */
     function print_metabox( $post ) {
-        $user_id = it_exchange_get_product_feature( $post->ID, $this->slug, array( 'field' => 'author_id' ) );
+        $author_id = it_exchange_get_product_feature( $post->ID, $this->slug, array( 'field' => 'author_id' ) );
 
-        $users = get_users( array( 'role' => 'author', 'orderby' => 'last_name' ) );
+        $users = get_users( array( 'orderby' => 'last_name' ) );
 
         ?>
         <p><?php echo $this->description; ?></p>
@@ -28,7 +28,7 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
         </label>
         <select id="ibd_author_select" name="ibd_author_select">
             <?php foreach ( $users as $user ): ?>
-                <option value="<?php echo $user->ID; ?>" <?php selected( $user->ID, $user_id ); ?>><?php echo $user->last_name . ', ' . $user->first_name; ?></option>
+                <option value="<?php echo $user->ID; ?>" <?php selected( $user->ID, $author_id ); ?>><?php echo $user->last_name . ', ' . $user->first_name; ?></option>
             <?php endforeach; ?>
         </select>
     <?php
