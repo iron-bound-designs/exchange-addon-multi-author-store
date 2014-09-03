@@ -16,8 +16,6 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
      * @param $post WP_Post
      */
     function print_metabox( $post ) {
-        $author_id = it_exchange_get_product_feature( $post->ID, $this->slug, array( 'field' => 'author_id' ) );
-
         $users = get_users( array( 'orderby' => 'last_name' ) );
 
         ?>
@@ -28,7 +26,7 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
         </label>
         <select id="ibd_author_select" name="ibd_author_select">
             <?php foreach ( $users as $user ): ?>
-                <option value="<?php echo $user->ID; ?>" <?php selected( $user->ID, $author_id ); ?>><?php echo $user->last_name . ', ' . $user->first_name; ?></option>
+                <option value="<?php echo $user->ID; ?>" <?php selected( $user->ID, $post->post_author ); ?>><?php echo $user->last_name . ', ' . $user->first_name; ?></option>
             <?php endforeach; ?>
         </select>
     <?php
@@ -40,11 +38,11 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
      * @return void
      */
     function save_feature_on_product_save() {
-        // Abort if we don't have a product ID
-        if ( !isset( $_POST['ID'] ) || empty( $_POST['ID'] ) )
-            return;
-        else
+        // Make sure we have a product ID
+        if ( isset( $_POST['ID'] ) && !empty( $_POST['ID'] ) )
             $product_id = $_POST['ID'];
+        else
+            return;
 
         $author_id = (int)$_POST['ibd_author_select'];
 
@@ -63,7 +61,13 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
      * @return boolean
      */
     function save_feature( $product_id, $new_value, $options = array() ) {
-        return update_post_meta( $product_id, '_it_exchange_product_feature_' . $this->slug, $new_value );
+        $data = array(
+            'ID'          => $product_id,
+            'post_type'   => 'it_exchange_prod',
+            'post_author' => $new_value,
+        );
+
+        return wp_update_post( $data ) !== 0;
     }
 
     /**
