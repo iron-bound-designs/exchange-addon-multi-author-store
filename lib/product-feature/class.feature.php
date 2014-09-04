@@ -60,14 +60,22 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
      *
      * @return boolean
      */
-    function save_feature( $product_id, $new_value, $options = array() ) {
+    function save_feature( $product_id, $values, $options = array() ) {
+        $author_id = $values['author_id'];
+
         $data = array(
             'ID'          => $product_id,
             'post_type'   => 'it_exchange_prod',
-            'post_author' => $new_value,
+            'post_author' => $author_id,
         );
 
-        return wp_update_post( $data ) !== 0;
+        remove_action( 'it_exchange_save_product', array( $this, 'save_feature_on_product_save' ) );
+
+        $result = wp_update_post( $data );
+
+        add_action( 'it_exchange_save_product', array( $this, 'save_feature_on_product_save' ) );
+
+        return $result;
     }
 
     /**
