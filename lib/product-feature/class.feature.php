@@ -1,8 +1,9 @@
 <?php
 
 class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
+    
     /**
-     * Register our product feature for selecting a Gravity Form
+     * Register our multi-author product feature.
      *
      * @param array $args
      */
