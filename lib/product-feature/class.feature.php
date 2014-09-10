@@ -89,35 +89,7 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
      * @return string product feature
      */
     function get_feature( $existing, $product_id, $options = array() ) {
-
-        $raw_meta = get_post_meta( $product_id, '_it_exchange_product_feature_' . $this->slug, true );
-
-        $defaults = array(
-            'author_id' => false
-        );
-
-        $raw_meta = wp_parse_args( $raw_meta, $defaults );
-
-        if ( !isset( $options['field'] ) ) // if we aren't looking for a particular field
-            return $raw_meta;
-
-        $field = $options['field'];
-
-        if ( isset( $raw_meta[$field] ) ) { // if the field exists with that name just return it
-            return $raw_meta[$field];
-        } else if ( strpos( $field, "." ) !== false ) { // if the field name was passed using array dot notation
-            $pieces = explode( '.', $field );
-            $context = $raw_meta;
-            foreach ( $pieces as $piece ) {
-                if ( !is_array( $context ) || !array_key_exists( $piece, $context ) )
-                    return null;
-                $context = &$context[$piece];
-            }
-
-            return $context;
-        } else {
-            return null; // we didn't find the data specified
-        }
+        return it_exchange_get_product_feature( $product_id, $this->slug, array( 'field' => 'author_id' ) );
     }
 
     /**
