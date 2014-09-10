@@ -1,6 +1,6 @@
 <?php
 
-class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
+class ITE_Multi_Author_Feature extends IT_Exchange_Product_Feature_Abstract {
     
     /**
      * Register our multi-author product feature.
@@ -89,7 +89,9 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
      * @return string product feature
      */
     function get_feature( $existing, $product_id, $options = array() ) {
-        return it_exchange_get_product_feature( $product_id, $this->slug, array( 'field' => 'author_id' ) );
+        $product = get_post( $product_id );
+
+        return $product->post_author;
     }
 
     /**
@@ -130,7 +132,7 @@ class IT_EXCHANGE_Feature extends IT_Exchange_Product_Feature_Abstract {
 
 }
 
-new IT_EXCHANGE_Feature( array(
+new ITE_Multi_Author_Feature( array(
     'slug'          => 'ibd-multi-author-store',
     'description'   => __( 'Select an author for this product.', 'ibd_multi_author' ),
     'metabox_title' => __( 'Product Author', 'ibd_multi_author' )
