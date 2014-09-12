@@ -70,6 +70,10 @@ class ITE_Multi_Author_Product_Feature extends IT_Exchange_Product_Feature_Abstr
 			return;
 		}
 
+		if ( empty( $_POST['ibd_author_select'] ) ) {
+			return;
+		}
+
 		$author_id = absint( $_POST['ibd_author_select'] );
 
 		it_exchange_update_product_feature( $product_id, $this->slug, array(
