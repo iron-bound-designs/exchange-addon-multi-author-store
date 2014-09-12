@@ -33,18 +33,10 @@ class ITE_Multi_Author {
         self::$dir = plugin_dir_path( __FILE__ );
         self::$url = plugin_dir_url( __FILE__ );
 
-        add_action( 'init', array( $this, 'init' ) );
         add_action( 'plugins_loaded', array( $this, 'load_text_domain' ) );
         add_action( 'it_exchange_register_addons', array( $this, 'multi_author_addon' ) );
 
         spl_autoload_register( array( $this, 'autoload' ) );
-    }
-
-    /**
-     * Initialize the plugin.
-     */
-    public function init() {
-        require_once( self::$dir . 'init.php' );
     }
 
     /**
