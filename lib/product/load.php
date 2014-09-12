@@ -1,6 +1,6 @@
 <?php
 /**
- * File Description
+ * Load the product feature.
  *
  * @author timothybjacobs
  * @since  9/11/14

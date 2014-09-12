@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Plugin Name: iThemes Exchange Multi-author Store Add-on
  * Plugin URI: http://ironbounddesigns.com
@@ -10,7 +9,9 @@
  * License: GPL2
  */
 
-
+/**
+ * Class ITE_Multi_Author
+ */
 class ITE_Multi_Author {
 
 	/**
@@ -78,7 +79,7 @@ class ITE_Multi_Author {
 			return;
 		}
 
-		// Get rid of the "IT_EXCHANGE_" prefix.
+		// Get rid of the "ITE_Multi_Author" prefix.
 		$class = strtolower( substr( $class_name, 16 ) );
 
 		$parts = explode( '_', $class );

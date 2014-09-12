@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class ITE_Multi_Author_Product_Feature
+ */
 class ITE_Multi_Author_Product_Feature extends IT_Exchange_Product_Feature_Abstract {
 
 	/**
@@ -160,5 +163,4 @@ class ITE_Multi_Author_Product_Feature extends IT_Exchange_Product_Feature_Abstr
 
 		return true;
 	}
-
 }
