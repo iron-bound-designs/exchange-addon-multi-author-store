@@ -40,7 +40,18 @@ class ITE_Multi_Author_Product_Feature extends IT_Exchange_Product_Feature_Abstr
 		</label>
 		<select id="ibd_author_select" name="ibd_author_select">
 			<?php foreach ( $users as $user ): ?>
-				<option value="<?php echo $user->ID; ?>" <?php selected( $user->ID, $post->post_author ); ?>><?php echo $user->last_name . ', ' . $user->first_name; ?></option>
+				<?php
+				if ( empty( $user->last_name ) && empty( $user->first_name ) ) {
+					$name = $user->display_name;
+				} elseif ( empty( $user->last_name ) ) {
+					$name = $user->first_name;
+				} elseif ( empty( $user->first_name ) ) {
+					$name = $user->last_name;
+				} else {
+					$name = $user->last_name . ', ' . $user->first_name;
+				}
+				?>
+				<option value="<?php echo esc_attr( $user->ID ); ?>" <?php selected( $user->ID, $post->post_author ); ?>><?php echo esc_html( $name ); ?></option>
 			<?php endforeach; ?>
 		</select>
 	<?php
