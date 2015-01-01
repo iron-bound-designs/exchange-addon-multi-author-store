@@ -8,7 +8,7 @@
  * @return array
  */
 function ite_multi_author_template_paths( $paths = array() ) {
-	$paths[] = ITE_Multi_Author::$dir . 'lib/templates';
+	$paths[] = ITEMAP::$dir . 'lib/templates';
 
 	return $paths;
 }
@@ -39,3 +39,16 @@ function ite_multi_author_product_author( $parts ) {
 }
 
 add_filter( 'it_exchange_get_content_product_product_info_loop_elements', 'ite_multi_author_product_author' );
+
+/**
+ * Add fields to the coupon edit screen.
+ *
+ * @since 1.0
+ *
+ * @param ITForm $form
+ */
+function itemap_add_coupon_fields_to_edit( $form ) {
+
+}
+
+add_action( 'it_exchange_basics_coupon_coupon_edit_screen_end_fields', 'itemap_add_coupon_fields_to_edit' );

@@ -10,9 +10,9 @@
  */
 
 /**
- * Class ITE_Multi_Author
+ * Class ITEMAP
  */
-class ITE_Multi_Author {
+class ITEMAP {
 
 	/**
 	 * @var string
@@ -104,4 +104,4 @@ class ITE_Multi_Author {
 	}
 }
 
-new ITE_Multi_Author;
+new ITEMAP;

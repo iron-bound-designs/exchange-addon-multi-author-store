@@ -8,6 +8,6 @@
 
 new ITE_Multi_Author_Product_Feature( array(
 	'slug'          => 'ibd-multi-author-store',
-	'description'   => __( 'Select an author for this product.', ITE_Multi_Author::SLUG ),
-	'metabox_title' => __( 'Product Author', ITE_Multi_Author::SLUG )
+	'description'   => __( 'Select an author for this product.', ITEMAP::SLUG ),
+	'metabox_title' => __( 'Product Author', ITEMAP::SLUG )
 ) );

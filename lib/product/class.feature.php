@@ -39,7 +39,7 @@ class ITE_Multi_Author_Product_Feature extends IT_Exchange_Product_Feature_Abstr
 		<p><?php echo $this->description; ?></p>
 
 		<label for="ibd_author_select">
-			<?php _e( 'Select the author', ITE_Multi_Author::SLUG ); ?>
+			<?php _e( 'Select the author', ITEMAP::SLUG ); ?>
 		</label>
 		<select id="ibd_author_select" name="ibd_author_select">
 			<?php foreach ( $users as $user ): ?>
