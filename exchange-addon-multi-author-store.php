@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: iThemes Exchange Multi-author Store Add-on
+ * Plugin Name: iThemes Exchange Multi-Author Store Add-on
  * Plugin URI: http://ironbounddesigns.com
  * Description: Allows for specification of an iThemes Exchange product author.
  * Version: 0.9

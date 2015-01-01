@@ -20,21 +20,8 @@ class ITE_Multi_Author_Product_Feature extends IT_Exchange_Product_Feature_Abstr
 	 * @param $post WP_Post
 	 */
 	function print_metabox( $post ) {
-		$args = array(
-			'orderby'  => 'meta_value',
-			'meta_key' => 'last_name'
-		);
 
-		/**
-		 * Filter the args that are passed to get_users()
-		 *
-		 * @param $args array
-		 * @param $post WP_Post
-		 */
-		$args = apply_filters( 'it_exchange_multi_author_product_feature_user_list_args', $args, $post );
-
-		$users = get_users( $args );
-
+		$users = itemap_get_product_authors();
 		?>
 		<p><?php echo $this->description; ?></p>
 
