@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Register our template paths
  *
