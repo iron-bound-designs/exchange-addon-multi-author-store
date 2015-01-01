@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class ITE_Multi_Author_Product_Feature
+ * Class ITEMAP_Product_Feature
  */
-class ITE_Multi_Author_Product_Feature extends IT_Exchange_Product_Feature_Abstract {
+class ITEMAP_Product_Feature extends IT_Exchange_Product_Feature_Abstract {
 
 	/**
 	 * Register our multi-author product feature.

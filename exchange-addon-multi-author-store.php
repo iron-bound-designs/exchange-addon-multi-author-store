@@ -75,12 +75,12 @@ class ITEMAP {
 	 * @param $class_name string
 	 */
 	public function autoload( $class_name ) {
-		if ( substr( $class_name, 0, 16 ) !== 'ITE_Multi_Author' ) {
+		if ( substr( $class_name, 0, 6 ) !== 'ITEMAP' ) {
 			return;
 		}
 
 		// Get rid of the "ITE_Multi_Author" prefix.
-		$class = strtolower( substr( $class_name, 16 ) );
+		$class = strtolower( substr( $class_name, 6 ) );
 
 		$parts = explode( '_', $class );
 
