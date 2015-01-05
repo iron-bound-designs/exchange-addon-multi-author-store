@@ -194,6 +194,10 @@ function itemap_validate_coupon_application( $result, $options, $coupon ) {
 		return false;
 	}
 
+	if ( empty( $coupon->product_author ) ) {
+		return null;
+	}
+
 	$author   = $coupon->product_author;
 	$products = it_exchange_get_cart_products();
 
